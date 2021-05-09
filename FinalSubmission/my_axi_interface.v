@@ -36,15 +36,15 @@ module my_axi_interface(
          input wire [3:0]       cache_rsel,
         input wire[`RegBus]    cache_raddr,
         input wire[`RegBus]    cache_waddr,  
-        input wire[`RegBus]    cache_wdata,    //cache??好保证在每个时钟沿更新要写的内容
-        input wire             cache_rready,   //cache端准备好??
-        input wire             cache_wvalid,   //cache端准备好写的数据，最好是持续
-        input wire             cache_wlast,    //cache写最后一个数??
-        //output reg[`RegBus]    rdata_o,        //返回到cache的读取数??
-        //output reg             rdata_valid_o,  //返回数据可获??
+        input wire[`RegBus]    cache_wdata,    //cache??濂戒繚璇佸湪姣忎釜鏃堕挓娌挎洿鏂拌鍐欑殑鍐呭
+        input wire             cache_rready,   //cache绔噯澶囧ソ??
+        input wire             cache_wvalid,   //cache绔噯澶囧ソ鍐欑殑鏁版嵁锛屾渶濂芥槸鎸佺画
+        input wire             cache_wlast,    //cache鍐欐渶鍚庝竴涓暟??
+        //output reg[`RegBus]    rdata_o,        //杩斿洖鍒癱ache鐨勮鍙栨暟??
+        //output reg             rdata_valid_o,  //杩斿洖鏁版嵁鍙幏??
          output reg[`RegBus]    rdata_o,
         output reg             rdata_valid_o,
-        output wire            wdata_resp_o,   //写响??,每个beat发一次，成功则可以传下一数据
+        output wire            wdata_resp_o,   //鍐欏搷??,姣忎釜beat鍙戜竴娆★紝鎴愬姛鍒欏彲浠ヤ紶涓嬩竴鏁版嵁
         //burst
         input wire[`AXBURST]   cache_burst_type, 
         input wire[`AXSIZE]    cache_burst_size,
@@ -178,7 +178,7 @@ module my_axi_interface(
                 end
             end
             `AWREADY:  begin
-                if(wready == `True_v)begin
+                if(awready == `True_v)begin
                     wnext_state = `WREADY;
                 end else begin
                     wnext_state = `AWREADY;
